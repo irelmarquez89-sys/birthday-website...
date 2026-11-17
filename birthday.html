@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>♡???♡</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="main-content">
+
+        <!-- CAT GIF -->
+        <img
+            src="Cats_Chibi_GIF_transparent.gif"
+            class="pic"
+            alt="Cute chibi cats"
+        >
+
+        <!-- HEADING -->
+        <h1 class="start">
+            HELLO PLEASE ENTER YOUR NAME
+            <span class="st">&lt;3</span>
+        </h1>
+
+        <!-- INPUT FORM -->
+        <form id="name-form">
+
+            <!-- INPUT BOX -->
+            <div class="input-container">
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    autocomplete="off"
+                    autocorrect="off"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    required
+                >
+
+                <label for="username">Enter your name</label>
+
+                <span class="input-glow"></span>
+
+            </div>
+
+            <!-- ENTER BUTTON -->
+            <button type="submit" id="enter-button">
+                Enter ♡
+            </button>
+
+            <!-- ERROR MESSAGE -->
+            <p id="error-message" aria-live="polite" hidden>
+                Oops! Only one special person can enter! 💗
+            </p>
+
+            <!-- HINT MESSAGE -->
+            <p id="hint-message">
+                hint: her nickname! ♡
+            </p>
+
+        </form>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="function.js"></script>
+
+</body>
+
+</html>

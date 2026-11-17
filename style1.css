@@ -1,0 +1,552 @@
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,700,50,1&display=swap');
+/* DESIGN TOKENS */
+:root {
+    --purple-light: #ffb7b7;
+    --purple-mid: #fc8484;
+    --purple-main: #f75555;
+    --purple-deep: #ff0000;
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* GENERAL SETTINGS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Fraunces', serif;
+    position: relative;
+
+    /* BACKGROUND IMAGE */
+    background-image: url("bak.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    overflow-x: hidden;
+}
+
+/* SOFT MOVING LIGHT OVERLAY */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(233, 183, 255, 0.35), transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.30), transparent 45%);
+    background-size: 140% 140%;
+
+    animation: lightDrift 12s ease-in-out infinite alternate;
+}
+
+@keyframes lightDrift {
+    0%   { background-position: 0% 0%;     opacity: 0.7; }
+    100% { background-position: 100% 100%; opacity: 1; }
+}
+
+/* FLOATING SPARKLES (CSS ONLY) */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(circle, #fff 0 2px, transparent 3px),
+        radial-gradient(circle, #f3d1ff 0 1.5px, transparent 2.5px),
+        radial-gradient(circle, #fff 0 1px, transparent 2px);
+    background-size: 180px 180px, 260px 260px, 120px 120px;
+    background-position: 0 0, 60px 90px, 30px 40px;
+
+    animation: sparkleRise 18s linear infinite, sparkleTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkleRise {
+    to { background-position: 0 -180px, 60px -170px, 30px -80px; }
+}
+
+@keyframes sparkleTwinkle {
+    0%, 100% { opacity: 0.45; }
+    50%      { opacity: 1; }
+}
+
+/* BIRTHDAY FLAG BANNER */
+
+/* BANNER SLIDES DOWN ON PAGE LOAD, THEN SWAYS GENTLY */
+.birthday-banner {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    pointer-events: none;
+    transform-origin: top center;
+
+    animation:
+        bannerSlideDown 1.5s ease-out forwards,
+        bannerSway 6s ease-in-out 1.5s infinite;
+}
+
+/* BANNER IMAGE AND SHADOW */
+.birthday-banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 5px 10px rgba(0, 0, 0, 0.6))
+        drop-shadow(0 0 20px rgba(255, 0, 0, 0.45));
+}
+
+/* SLIDE-DOWN ANIMATION */
+@keyframes bannerSlideDown {
+    0%   { transform: translateY(-100%); opacity: 0; }
+    70%  { transform: translateY(8px);   opacity: 1; }
+    100% { transform: translateY(0);     opacity: 1; }
+}
+
+/* SUBTLE SWAY AFTER LANDING */
+@keyframes bannerSway {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(0.6deg); }
+}
+
+/* MAIN CONTENT */
+.main-content {
+    position: relative;
+    z-index: 2;
+
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+    padding: 150px 20px 30px;
+    text-align: center;
+}
+
+/* BIRTHDAY HEADINGS */
+.start {
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    margin-top: -170px;
+
+    /* animated shimmer sweeping across white text */
+    background: linear-gradient(
+        100deg,
+        #ffffff 0%,
+        #ffffff 40%,
+        #f1d9ff 50%,
+        #ffffff 60%,
+        #fef9e3 100%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(0 0 8px rgba(254, 0, 0, 0.7))
+        drop-shadow(0 0 22px rgba(0, 0, 0, 0.7));
+
+    opacity: 0;
+    animation:
+        titlePop 1s var(--ease-bounce) 0.8s forwards,
+        titleShimmer 4s linear 2s infinite;
+}
+
+@keyframes titlePop {
+    0%   { opacity: 0; transform: translateY(30px) scale(0.85); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes titleShimmer {
+    0%   { background-position: 150% 0; }
+    100% { background-position: -100% 0; }
+}
+
+/* GIFT WRAPPER (HANDLES FLOATING + GLOW AURA) */
+.gift-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    animation:
+        giftEnter 0.9s var(--ease-bounce) 1.3s forwards,
+        giftFloat 3s ease-in-out 2.2s infinite;
+}
+
+/* PULSING AURA BEHIND THE GIFT */
+.gift-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 150%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    z-index: -1;
+
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.75) 0%,
+        rgba(168, 85, 247, 0.35) 40%,
+        transparent 70%
+    );
+    animation: auraPulse 2.6s ease-in-out infinite;
+}
+
+/* EXPANDING RIPPLE RING */
+.gift-wrapper::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    z-index: -1;
+    border: 2px solid rgba(233, 183, 255, 0.8);
+
+    animation: ringRipple 2.6s ease-out infinite;
+}
+
+@keyframes auraPulse {
+    0%, 100% { transform: scale(0.85); opacity: 0.7; }
+    50%      { transform: scale(1.1);  opacity: 1; }
+}
+
+@keyframes ringRipple {
+    0%   { transform: scale(0.7); opacity: 0.9; }
+    100% { transform: scale(1.7); opacity: 0; }
+}
+
+@keyframes giftEnter {
+    0%   { opacity: 0; transform: translateY(40px) scale(0.6) rotate(-8deg); }
+    100% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+}
+
+/* FLOATING ANIMATION */
+@keyframes giftFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+}
+
+/* GIFT IMAGE */
+.gift {
+    display: block;
+    width: 250px;
+    max-width: 75vw;
+    height: auto;
+    cursor: pointer;
+
+    filter:
+        drop-shadow(0 0 12px var(--purple-mid))
+        drop-shadow(0 0 0px var(--purple-main));
+
+    transition:
+        transform 0.4s var(--ease-bounce),
+        filter 0.4s ease;
+}
+
+/* GIFT HOVER EFFECT: GROW + WIGGLE */
+.gift:hover {
+    transform: scale(1.12);
+    filter:
+        drop-shadow(0 0 18px var(--purple-light))
+        drop-shadow(0 0 40px var(--purple-main))
+        brightness(1.08);
+    animation: giftWiggle 0.6s ease-in-out;
+}
+
+@keyframes giftWiggle {
+    0%, 100% { rotate: 0deg; }
+    20%      { rotate: -6deg; }
+    40%      { rotate: 5deg; }
+    60%      { rotate: -4deg; }
+    80%      { rotate: 3deg; }
+}
+
+/* GIFT CLICK EFFECT */
+.gift:active {
+    transform: scale(0.95);
+}
+
+/* OPEN IT TEXT */
+.open-text {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: -5px;
+
+    color: #ffffff;
+    text-shadow:
+        0 0 8px var(--purple-light),
+        0 0 18px var(--purple-main),
+        0 0 32px var(--purple-deep);
+
+    opacity: 0;
+    animation:
+        fadeUp 0.8s ease-out 2s forwards,
+        openPulse 1.8s ease-in-out 2.8s infinite;
+}
+
+@keyframes fadeUp {
+    0%   { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* OPEN IT PULSE ANIMATION */
+@keyframes openPulse {
+    0%, 100% { opacity: 1;    transform: scale(1); }
+    50%      { opacity: 0.75; transform: scale(1.06); }
+}
+
+/* TABLETS AND SMALL LAPTOPS */
+@media (max-width: 768px) {
+    .main-content {
+        padding-top: 125px;
+        gap: 12px;
+    }
+
+    .start {
+        font-size: 38px;
+    }
+
+    .gift {
+        width: 220px;
+    }
+
+    .open-text {
+        font-size: 29px;
+    }
+}
+
+/* MOBILE PHONES */
+@media (max-width: 480px) {
+    .main-content {
+        gap: 8px;
+        padding: 110px 14px 25px;
+    }
+
+    .start {
+        font-size: 35px;
+        line-height: 1.2;
+    }
+
+    .gift {
+        width: 240px;
+        max-width: 70vw;
+        margin-top: -25px;
+    }
+
+    .open-text {
+        font-size: 28px; /* fixed: was an invalid "px" value */
+        margin-top: -8px;
+    }
+}
+
+/* VERY SMALL PHONES */
+@media (max-width: 360px) {
+    .main-content {
+        padding-top: 90px;
+    }
+
+    .start {
+        font-size: 26px;
+    }
+
+    .gift {
+        width: 175px;
+    }
+
+    .open-text {
+        font-size: 23px;
+    }
+}
+
+/* FALLING FLOWERS (TOP TO BOTTOM) */
+.flowers {
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.flower {
+    position: absolute;
+    top: -70px;
+    left: var(--x, 50%);
+    font-size: var(--size, 32px);
+    line-height: 1;
+    opacity: 0;
+
+    filter: drop-shadow(0 0 8px rgba(233, 183, 255, 0.9));
+
+    /* fall = vertical drop, sway = side drift, spin = rotation */
+    animation:
+        flowerFall var(--fall, 14s) linear var(--delay, 0s) infinite,
+        flowerSway var(--sway, 4s) ease-in-out var(--delay, 0s) infinite,
+        flowerSpin var(--spin, 9s) linear var(--delay, 0s) infinite;
+}
+
+/* EVERY OTHER FLOWER SPINS THE OPPOSITE WAY */
+.flower:nth-child(even) {
+    animation-direction: normal, normal, reverse;
+}
+
+/* EACH FLOWER GETS ITS OWN POSITION, SIZE, SPEED AND START TIME */
+.flower:nth-child(1)  { --x: 6%;  --size: 30px; --fall: 15s; --sway: 4.5s; --spin: 10s; --delay: 2s;   }
+.flower:nth-child(2)  { --x: 14%; --size: 22px; --fall: 12s; --sway: 3.5s; --spin: 8s;  --delay: 6s;   }
+.flower:nth-child(3)  { --x: 22%; --size: 36px; --fall: 17s; --sway: 5s;   --spin: 12s; --delay: 4s;   }
+.flower:nth-child(4)  { --x: 30%; --size: 26px; --fall: 13s; --sway: 4s;   --spin: 9s;  --delay: 9s;   }
+.flower:nth-child(5)  { --x: 38%; --size: 32px; --fall: 16s; --sway: 4.8s; --spin: 11s; --delay: 1s;   }
+.flower:nth-child(6)  { --x: 46%; --size: 20px; --fall: 11s; --sway: 3.2s; --spin: 7s;  --delay: 7s;   }
+.flower:nth-child(7)  { --x: 54%; --size: 34px; --fall: 18s; --sway: 5.2s; --spin: 13s; --delay: 3s;   }
+.flower:nth-child(8)  { --x: 62%; --size: 24px; --fall: 12.5s; --sway: 3.8s; --spin: 8.5s; --delay: 10s; }
+.flower:nth-child(9)  { --x: 70%; --size: 30px; --fall: 15s; --sway: 4.4s; --spin: 10s; --delay: 5s;   }
+.flower:nth-child(10) { --x: 78%; --size: 38px; --fall: 19s; --sway: 5.5s; --spin: 14s; --delay: 8s;   }
+.flower:nth-child(11) { --x: 86%; --size: 22px; --fall: 11.5s; --sway: 3.4s; --spin: 7.5s; --delay: 0s; }
+.flower:nth-child(12) { --x: 94%; --size: 28px; --fall: 14s; --sway: 4.2s; --spin: 9.5s; --delay: 11s; }
+
+@keyframes flowerFall {
+    0%   { transform: translateY(0);     opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { transform: translateY(115vh); opacity: 0; }
+}
+
+@keyframes flowerSway {
+    0%, 100% { translate: -30px 0; }
+    50%      { translate: 30px 0; }
+}
+
+@keyframes flowerSpin {
+    from { rotate: 0deg; }
+    to   { rotate: 360deg; }
+}
+
+/* FEWER FLOWERS ON SMALL SCREENS */
+@media (max-width: 480px) {
+    .flower:nth-child(n+8) {
+        display: none;
+    }
+}
+
+/* ACCESSIBILITY: REDUCE ANIMATIONS */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .start,
+    .gift-wrapper,
+    .open-text {
+        opacity: 1;
+    }
+}
+
+
+.birthday-bouquet {
+    position: fixed;
+    bottom: -100px;
+    right: -85px;
+
+    width: 380px;
+    height: auto;
+
+    /* More slanted */
+    transform: rotate(-22deg);
+    transform-origin: bottom right;
+
+    /* Black shadow */
+    filter: drop-shadow(8px 0px 32px rgba(0, 0, 0, 0.65));
+
+    /* Slide-in animation */
+    animation: bouquetSlideIn 1.5s cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+
+    z-index: 5;
+    pointer-events: none;
+}
+
+@keyframes bouquetSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(180px, 120px) rotate(-22deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0) rotate(-22deg);
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+    .birthday-bouquet {
+        width: 260px;
+        bottom: -70px;
+        right: -135px;
+
+        transform: rotate(-89deg);
+
+        animation: bouquetSlideInMobile 1.5s
+            cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+}
+
+@keyframes bouquetSlideInMobile {
+    from {
+        opacity: 0;
+        transform: translate(120px, 100px) rotate(-22deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0) rotate(-22deg);
+    }
+}
+
+
+/* Remove blue tap highlight */
+a,
+a img,
+.gift {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+/* Remove focus outline when tapping or clicking */
+a:focus,
+a:focus-visible,
+.gift:focus,
+.gift:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Prevent a blue border around linked images */
+a img {
+    border: none;
+    outline: none;
+}

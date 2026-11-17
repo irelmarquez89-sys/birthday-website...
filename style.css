@@ -1,0 +1,450 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&display=swap');
+
+/* GENERAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+/* PAGE BACKGROUND */
+body {
+    min-height: 100vh;
+    background-image: url("Beige\ Background\ Paper\ H5\ _\ Old\ paper\ background\,\ Paper\ background\ texture\,\ Paper\ background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Fraunces', serif;
+    overflow-x: hidden;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+
+    width: 100%;
+    max-width: 700px;
+    padding: 35px 20px;
+
+    transform: translateY(-30px);
+}
+
+/* CAT GIF */
+.pic {
+    display: block;
+    width: 250px;
+    max-width: 80%;
+    height: auto;
+    object-fit: contain;
+
+    filter: drop-shadow(0 8px 12px rgba(46, 2, 73, 0.15));
+    transition: transform 0.35s ease;
+}
+
+.pic:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
+/* HEADING */
+.start {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    margin-top: -20px;
+
+    background: linear-gradient(
+        to bottom,
+        #ff0000 0%,
+        #690000 50%,
+        #ff0000 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(0 4px 6px rgba(46, 2, 73, 0.5));
+    animation: fadeIn 0.8s ease both;
+}
+
+/* HEART */
+.st {
+    display: inline-block;
+    margin-left: 2px;
+
+    font-family: "Fredoka", sans-serif;
+    font-size: inherit;
+    font-weight: 700;
+
+    background: linear-gradient(
+        to bottom,
+        #ff0000 0%,
+        #b10000 50%,
+        #570000 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+/* FORM */
+#name-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    gap: 12px;
+}
+
+/* INPUT CONTAINER */
+.input-container {
+    position: relative;
+    width: min(350px, 100%);
+
+    animation: fadeIn 1s ease both;
+}
+
+/* INPUT BOX */
+.input-container input {
+    display: block;
+    width: 100%;
+    height: 60px;
+    padding: 0 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+
+    font-family: "Fredoka", sans-serif;
+    font-size: 16px;
+
+    box-shadow: 0 4px 15px rgba(73, 2, 2, 0.15);
+
+    transition:
+        border-color 0.35s ease,
+        background-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
+}
+
+/* INPUT PLACEHOLDER */
+.input-container input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* INPUT FOCUS */
+.input-container input:focus {
+    border-color: #ff0000;
+    background: rgba(169, 0, 0, 0.12);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 0, 0, 0.12),
+        0 0 25px rgba(148, 0, 0, 0.3),
+        0 8px 20px rgba(255, 0, 0, 0.2);
+
+    transform: translateY(-2px);
+}
+
+/* FLOATING LABEL */
+.input-container label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+
+    transform: translateY(-50%);
+    padding: 0 6px;
+
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+
+    pointer-events: none;
+    z-index: 1;
+
+    transition:
+        top 0.3s ease,
+        left 0.3s ease,
+        font-size 0.3s ease,
+        color 0.3s ease;
+}
+
+/* LABEL MOVES UP */
+.input-container input:focus + label,
+.input-container input:valid + label {
+    top: 0;
+    left: 14px;
+
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #ffd5d5;
+    z-index: 3;
+}
+
+/* LABEL BACKGROUND */
+.input-container label::before {
+    content: "";
+
+    position: absolute;
+    left: -6px;
+    right: -6px;
+    top: 50%;
+
+    height: 18px;
+    transform: translateY(-50%);
+
+    background: transparent;
+    border-radius: 5px;
+    z-index: -1;
+
+    transition: background 0.3s ease;
+}
+
+/* DARK BACKGROUND WHEN ACTIVE */
+.input-container input:focus + label::before,
+.input-container input:valid + label::before {
+    background: #b36b6b;
+}
+
+/* INPUT GLOW */
+.input-glow {
+    position: absolute;
+    inset: -2px;
+
+    border-radius: 18px;
+    pointer-events: none;
+
+    opacity: 0;
+    box-shadow: 0 0 20px rgba(250, 139, 139, 0.35);
+
+    transition: opacity 0.35s ease;
+}
+
+.input-container input:focus ~ .input-glow {
+    opacity: 1;
+}
+
+/* ERROR INPUT */
+#username.error {
+    border: 2px solid #FF5277;
+    background: rgba(255, 82, 119, 0.16);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 82, 119, 0.12),
+        0 0 20px rgba(255, 82, 119, 0.35);
+
+    animation: shake 0.4s ease;
+}
+
+/* ERROR LABEL */
+#username.error + label {
+    color: #FFD0DC;
+}
+
+/* SHAKE ANIMATION */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    20%, 60% {
+        transform: translateX(-6px);
+    }
+
+    40%, 80% {
+        transform: translateX(6px);
+    }
+}
+
+/* ENTER BUTTON */
+#enter-button {
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    width: min(200px, 100%);
+    padding: 14px 25px;
+    margin: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #fc8484,
+        #fa8b8b,
+        #f65c5c
+    );
+
+    color: #FFFFFF;
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+/* BUTTON HOVER */
+#enter-button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 8px 22px rgba(217, 40, 40, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* BUTTON CLICK */
+#enter-button:active {
+    transform: scale(0.96);
+}
+
+/* BUTTON KEYBOARD FOCUS */
+#enter-button:focus-visible {
+    outline: 3px solid #E9D5FF;
+    outline-offset: 4px;
+}
+
+/* ERROR MESSAGE - HIDDEN BY DEFAULT */
+#error-message {
+    display: block;
+    width: min(350px, 100%);
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+    color: #fc3d3d;
+
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+/* SHOW ERROR AFTER INCORRECT SUBMISSION */
+#error-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* HINT MESSAGE - VISIBLE BY DEFAULT */
+
+/* HINT MESSAGE - HIDDEN BY DEFAULT */
+#hint-message {
+    display: block;
+    width: min(350px, 100%);
+    margin-top: -8px;
+
+    text-align: center;
+    color: #9a0000;
+
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 500;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+/* SHOW HINT WITH ERROR */
+#hint-message.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* FADE-IN ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 480px) {
+    .main-content {
+        gap: 18px;
+        padding: 25px 20px;
+        transform: translateY(-15px);
+    }
+
+    .pic {
+        width: 200px;
+    }
+
+    .start {
+        font-size: 21px;
+    }
+
+    .input-container input {
+        height: 55px;
+    }
+
+    #enter-button {
+        width: min(220px, 100%);
+    }
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite Food</title>
+
+    <link rel="stylesheet" href="veristyle.css">
+</head>
+<body>
+
+    <div class="food-box">
+        <p class="verify">PASS THE BABIE VERIFICATION</p>
+        <h1>WHAT IS YOUR BABIE`S FAVOURITE FOOD?</h1>
+
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="food" id="pancake" value="Pancake">
+                <label for="pancake"><span class="emoji">🥞</span>Pancake</label>
+            </div>
+
+            <div class="option">
+                <input type="radio" name="food" id="adobo" value="Adobo">
+                <label for="adobo"><span class="emoji">🍲</span>Adobo</label>
+            </div>
+
+            <div class="option">
+                <input type="radio" name="food" id="chicken" value="Chicken">
+                <label for="chicken"><span class="emoji">🍗</span>Chicken</label>
+            </div>
+
+            <div class="option">
+                <input type="radio" name="food" id="spaghetti" value="Spaghetti">
+                <label for="spaghetti"><span class="emoji">🍝</span>Spaghetti</label>
+            </div>
+        </div>
+
+        <p class="error-msg" id="errorMsg" role="alert"></p>
+
+        <img class="dog" src="download.gif" alt="Confused dog with a question mark">
+
+        <p class="result" id="result" aria-live="polite"></p>
+    </div>
+
+    <script src="veri.js"></script>
+
+</body>
+</html>
